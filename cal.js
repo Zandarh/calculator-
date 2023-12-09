@@ -274,8 +274,15 @@ function displayToLowerScreen(){
         setTimeout(errorFunction, 3000);
 
     }
-    else{
+    else if (!Number.isInteger(commeredResult)){
+        let temp = parseFloat(commeredResult);
+        temp = temp.toFixed(9);
+        commeredResult = String(temp);
+        calculator.displayArray = commeredResult;
         lowerDisplay.value = commeredResult;
+    }
+    else{
+        lowerDisplay.value = commeredResult
     }
     
 }
