@@ -109,3 +109,6 @@ footer p, a{
     font-size: 12px;
     color: #ffff;
 }
+.error{
+    margin: auto;
+}

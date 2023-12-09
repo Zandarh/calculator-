@@ -112,7 +112,6 @@ function bodmas(array){
             const secondOperand = parseFloat(array[i + 1]);
             result = String(calculate(firstOperand, secondOperand, operator));
             array.splice(i-1, 3, result);
-            console.log(array);
             i--;
         }
     }
@@ -124,7 +123,6 @@ function bodmas(array){
             const secondOperand = parseFloat(array[i + 1]);
             result = String(calculate(firstOperand, secondOperand, operator));
             array.splice(i-1, 3, result);
-            console.log(array);
             i--;
         }
     }
@@ -257,11 +255,30 @@ function addComma(string, dot){
         return string;
     }
 }
+function errorFunction(){
+    const error = document.querySelector('.error');
+    error.remove();
+}
 
 // Displas the calculation result on the lower screen
 function displayToLowerScreen(){
     let commeredResult = addComma(calculator.result.join(), '.')
-    lowerDisplay.value = commeredResult;
+    console.log(commeredResult);
+    if(commeredResult === 'In,nfin,ity' || isNaN(commeredResult)){
+        const container = document.querySelector('.container');
+        const div = document.createElement('div');
+        div.textContent = "That's an error";
+        div.style.color = 'red';
+        div.setAttribute("class", "error");
+        container.insertBefore(div, container.lastElementChild);
+        resetCalculator();
+        setTimeout(errorFunction, 3000);
+
+    }
+    else{
+        lowerDisplay.value = commeredResult;
+    }
+    
 }
 
 // updates the user entry as it comes in
@@ -348,7 +365,14 @@ function deleteInput(){
 
 }
 function inputDecimal(dot){
+    
     if(!calculator.displayValue.includes(dot)){
+        calculator.displayValue += dot;
+        calculator.displayString = calculator.displayValue;
+        displayToScreen();
+        console.log(calculator);
+    }
+    else if((calculator.displayArray.length <= 2) && !calculator.displayValue.includes(dot)){
         calculator.displayValue += dot;
         calculator.displayString = calculator.displayValue;
         displayToScreen();
