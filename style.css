@@ -110,5 +110,12 @@ footer p, a{
     color: #ffff;
 }
 .error{
+    position: absolute;
     margin: auto;
+    top: 500px;
+    left: 220px;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: #babecc;
+    color: #21292e;
 }

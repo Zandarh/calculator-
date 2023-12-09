@@ -267,7 +267,6 @@ function displayToLowerScreen(){
         const container = document.querySelector('.container');
         const div = document.createElement('div');
         div.textContent = "Impossible calculation";
-        div.style.color = 'red';
         div.setAttribute("class", "error");
         container.insertBefore(div, container.lastElementChild);
         resetCalculator();
