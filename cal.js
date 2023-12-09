@@ -263,11 +263,10 @@ function errorFunction(){
 // Displas the calculation result on the lower screen
 function displayToLowerScreen(){
     let commeredResult = addComma(calculator.result.join(), '.')
-    console.log(commeredResult);
-    if(commeredResult === 'In,nfin,ity' || isNaN(commeredResult)){
+    if(commeredResult === 'In,nfin,ity'){
         const container = document.querySelector('.container');
         const div = document.createElement('div');
-        div.textContent = "That's an error";
+        div.textContent = "Impossible calculation";
         div.style.color = 'red';
         div.setAttribute("class", "error");
         container.insertBefore(div, container.lastElementChild);
@@ -340,16 +339,19 @@ function equates(){
 // deletes the last inputed digit. from both the input and the saved calculator object
 function deleteInput(){
 
+    //checking the string length
     if(calculator.displayValue == ''){
         higherDisplay.value = '0';
         return;
     }
     
     let array = calculator.displayValue.split('');
-    let popped = array.pop();
+    let popped = array.pop();//removing the last character
     
+    //is the character a number?
     if(!(isNaN(parseFloat(popped)))){
         calculator.displayArray.pop();
+        console.log(calculator);
         
     }
     calculator.displayValue = array.join('');
@@ -358,6 +360,8 @@ function deleteInput(){
     handleOperator(calculator.displayArray);
     displayToScreen();
     let theArray = calculator.displayArray;
+    console.log(calculator);
+    
     if((theArray[theArray.length- 1] == 'x') || (theArray[theArray.length- 1] == '-') || (theArray[theArray.length- 1] == '+') ||(theArray[theArray.length- 1] == '/')){
         clearLowerScreen();
     }
