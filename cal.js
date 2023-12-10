@@ -296,6 +296,7 @@ function updateDisplayValue(theValue){
 // Makes sure the operators are also displayed
 function updateScreenDisplayValue(theValue){
     if(calculator.displayValue == ''){
+        higherDisplay.value = '0';
         return;
     }else if(calculator.displayValue.length > 1){
         calculator.displayValue = calculator.displayValue + theValue;
